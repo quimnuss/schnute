@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwn4q1vdx7rxu"]
+
+[ext_resource type="Texture2D" uid="uid://km8ib7bebay5" path="res://assets/corsales.png" id="1_0rm3b"]
+[ext_resource type="Script" path="res://actors/heart.gd" id="1_qppbi"]
+
+[sub_resource type="Animation" id="Animation_wjj1h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8b3po"]
+resource_name = "fly"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_433ce"]
+_data = {
+"RESET": SubResource("Animation_wjj1h"),
+"fly": SubResource("Animation_8b3po")
+}
+
+[node name="Heart" type="Node2D"]
+script = ExtResource("1_qppbi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_433ce")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0rm3b")
+hframes = 2
